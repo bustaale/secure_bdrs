@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "303340493351",
+    "project_id": "bdrs-ac088",
+    "storage_bucket": "bdrs-ac088.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:303340493351:android:18a4350b1671dc12470c02",
+        "android_client_info": {
+          "package_name": "com.secure.bdrs"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNTaojgowT9IND6v8QkK0MFOJXBOhrsWg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

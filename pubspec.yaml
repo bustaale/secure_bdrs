@@ -1,0 +1,86 @@
+name: secure_bdrs
+
+description: "A Secure and Scalable Online Birth and Death Registration System for National Civil Data Management - A Case Study of Kajiado County."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  pdf: ^3.10.6
+  printing: ^5.12.0
+  path_provider: ^2.1.2
+
+  # UI and Icons
+  cupertino_icons: ^1.0.8
+  google_fonts: ^6.2.1
+  font_awesome_flutter: ^10.6.0
+  flutter_svg: ^2.0.10+1
+  lottie: ^3.1.2
+
+  # Navigation and State Management
+  get: ^4.6.6
+  provider: ^6.1.2
+
+  # Form validation, dates, and ID generation
+  intl: ^0.20.2
+  uuid: ^4.4.0
+
+  # Animations and Effects
+  animations: ^2.0.10
+  flutter_animate: ^4.5.0
+  shimmer: ^3.0.0
+  
+  # Charts
+  fl_chart: ^0.66.0
+
+  # Toasts and Alerts
+  fluttertoast: ^9.0.0
+  awesome_dialog: ^3.1.1
+
+  # Image Picker (for uploading photos in forms)
+  image_picker: ^1.0.7
+  photo_view: ^0.14.0
+  
+  # File handling and downloads
+  permission_handler: ^11.3.1
+  share_plus: ^10.1.2
+  file_picker: ^8.1.4
+
+  # Local Storage
+  shared_preferences: ^2.2.2
+
+  # Firebase
+  firebase_core: ^3.15.2
+  cloud_firestore: ^5.6.12
+  firebase_auth: ^5.7.0
+  firebase_storage: ^12.3.8
+
+  # Security and Encryption
+  crypto: ^3.0.3
+  http: ^1.2.0
+  local_auth: ^2.3.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter:
+  uses-material-design: true
+  generate: true
+  assets:
+    - assets/images/
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/secure_bdrs_icon.png"
+  remove_alpha_ios: true

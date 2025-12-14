@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Export Icon as PNG</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        .preview {
+            margin: 20px 0;
+            text-align: center;
+        }
+        button {
+            background: #00FF88;
+            color: #2D1B4E;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #00CC6F;
+        }
+        .instructions {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+        }
+        .instructions ol {
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🛡️ Secure BDRS Icon Exporter</h1>
+        <div class="preview">
+            <img id="iconPreview" src="assets/icon/secure_bdrs_icon.svg" alt="Icon Preview" style="max-width: 512px;">
+        </div>
+        <div style="text-align: center;">
+            <button onclick="exportPNG()">Export as PNG (1024x1024)</button>
+            <button onclick="exportPNG512()">Export as PNG (512x512)</button>
+        </div>
+        <div class="instructions">
+            <h3>Instructions:</h3>
+            <ol>
+                <li>Click the "Export as PNG" button above</li>
+                <li>The PNG will download automatically</li>
+                <li>Save it as <code>secure_bdrs_icon.png</code> in the <code>assets/icon/</code> folder</li>
+                <li>Run <code>flutter pub run flutter_launcher_icons</code> to generate app icons</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        function exportPNG(size = 1024) {
+            const img = document.getElementById('iconPreview');
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            
+            // Load SVG
+            const svgImg = new Image();
+            svgImg.onload = function() {
+                ctx.drawImage(svgImg, 0, 0, size, size);
+                canvas.toBlob(function(blob) {
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `secure_bdrs_icon_${size}x${size}.png`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                });
+            };
+            svgImg.src = 'assets/icon/secure_bdrs_icon.svg';
+        }
+
+        function exportPNG512() {
+            exportPNG(512);
+        }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,110 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function to check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Helper function to check if user is admin
+    function isAdmin() {
+      return isAuthenticated() && 
+             (request.auth.token.email == 'moh4383531@gmail.com' ||
+              request.auth.token.email.matches('.*admin.*@.*\\.go\\.ke$'));
+    }
+    
+    // Helper function to check if user owns the document
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    // Birth Records Collection
+    match /births/{birthId} {
+      // Allow read if authenticated
+      allow read: if isAuthenticated();
+      
+      // Allow create/update/delete if authenticated
+      allow create, update: if isAuthenticated();
+      
+      // Only admin can delete
+      allow delete: if isAdmin();
+    }
+    
+    // Death Records Collection
+    match /deaths/{deathId} {
+      // Allow read if authenticated
+      allow read: if isAuthenticated();
+      
+      // Allow create/update/delete if authenticated
+      allow create, update: if isAuthenticated();
+      
+      // Only admin can delete
+      allow delete: if isAdmin();
+    }
+    
+    // Users Collection
+    match /users/{userId} {
+      // Users can read their own profile or admin can read all
+      allow read: if isAuthenticated() && (isOwner(userId) || isAdmin());
+      
+      // Users can create their own profile
+      allow create: if isAuthenticated() && isOwner(userId);
+      
+      // Users can update their own profile or admin can update any
+      allow update: if isAuthenticated() && (isOwner(userId) || isAdmin());
+      
+      // Only admin can delete users
+      allow delete: if isAdmin();
+    }
+    
+    // Audit Logs Collection
+    match /audit_logs/{logId} {
+      // Only authenticated users can read
+      allow read: if isAuthenticated();
+      
+      // Only system can create audit logs (through authenticated requests)
+      allow create: if isAuthenticated();
+      
+      // No updates or deletes allowed (immutable logs)
+      allow update, delete: if false;
+    }
+    
+    // Notifications Collection
+    match /notifications/{notificationId} {
+      // Users can only read their own notifications
+      allow read: if isAuthenticated() && 
+                     resource.data.userId == request.auth.uid;
+      
+      // System can create notifications (through authenticated requests)
+      allow create: if isAuthenticated();
+      
+      // Users can update their own notifications (e.g., mark as read)
+      allow update: if isAuthenticated() && 
+                       resource.data.userId == request.auth.uid;
+      
+      // Users can delete their own notifications
+      allow delete: if isAuthenticated() && 
+                       resource.data.userId == request.auth.uid;
+    }
+    
+    // Backups Collection
+    match /backups/{backupId} {
+      // Only admin can read backups
+      allow read: if isAdmin();
+      
+      // Only authenticated users can create backups
+      allow create: if isAuthenticated();
+      
+      // Only admin can update or delete backups
+      allow update, delete: if isAdmin();
+    }
+    
+    // For development/testing - allow all operations if authenticated
+    // WARNING: Remove this in production!
+    match /{document=**} {
+      allow read, write: if isAuthenticated();
+    }
+  }
+}
+

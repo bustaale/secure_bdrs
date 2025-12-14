@@ -1,0 +1,56 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background - Deep Purple -->
+  <rect width="1024" height="1024" fill="#2D1B4E"/>
+  
+  <!-- Shield shape outline -->
+  <path d="M512 120 L820 200 L820 480 Q820 650 720 750 Q620 850 512 900 L404 850 Q304 750 304 480 L304 200 Z" 
+        fill="none" 
+        stroke="#4A2C6E" 
+        stroke-width="12"/>
+  
+  <!-- Circuit board element (left side) -->
+  <g transform="translate(250, 380)">
+    <!-- Main vertical circuit path -->
+    <path d="M0 0 L0 80 L40 80 L40 140 L80 140 L80 200" 
+          stroke="#00FF88" 
+          stroke-width="16" 
+          fill="none" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"/>
+    <!-- Horizontal branches -->
+    <path d="M0 40 L60 40" 
+          stroke="#00FF88" 
+          stroke-width="12" 
+          stroke-linecap="round"/>
+    <path d="M40 100 L100 100" 
+          stroke="#00FF88" 
+          stroke-width="12" 
+          stroke-linecap="round"/>
+    <path d="M80 160 L120 160" 
+          stroke="#00FF88" 
+          stroke-width="12" 
+          stroke-linecap="round"/>
+    <!-- Circuit node (top circular component) -->
+    <circle cx="0" cy="0" r="18" fill="#00FF88"/>
+  </g>
+  
+  <!-- Padlock (center, prominent) -->
+  <g transform="translate(512, 450)">
+    <!-- Shackle (U-shaped top) -->
+    <path d="M-100 -80 Q-100 -130 -50 -130 Q0 -130 0 -80 L0 -30" 
+          stroke="#00FF88" 
+          stroke-width="45" 
+          fill="none" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"/>
+    <!-- Lock body -->
+    <rect x="-75" y="-30" width="150" height="180" rx="20" fill="#00FF88"/>
+    <!-- Keyhole (inverted teardrop shape) -->
+    <path d="M0 20 L0 80 M-20 35 Q-20 50 0 50 Q20 50 20 35" 
+          stroke="#2D1B4E" 
+          stroke-width="10" 
+          fill="#2D1B4E"/>
+    <circle cx="0" cy="35" r="15" fill="#2D1B4E"/>
+  </g>
+</svg>
+
